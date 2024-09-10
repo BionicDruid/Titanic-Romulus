@@ -232,7 +232,7 @@ export default function Formulario() {
                 </div>
                 <div className="item">
                 <FormControl variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-username">Name</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-username">FullName</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-username"
                             type="text"
