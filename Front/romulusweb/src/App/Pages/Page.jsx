@@ -26,7 +26,7 @@ export default function Formulario() {
             <Box className ="Formulario">
                 <Grid2 container spacing={2} columns={2}>
                     <FormControl variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-username">Username</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-username">Nombre</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-username"
                             type="text"
