@@ -1,0 +1,35 @@
+.footer-box {
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente */
+    padding: 10px;
+    color: #F4DDB4ff;
+    background-color:#193248ff ;
+  }
+  .footer-column {
+    color: #F4DDB4ff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    text-wrap: wrap;
+    
+  }
+  .footer-about {
+    color: #F4DDB4ff;
+    text-decoration: none;
+  }
+  .footer-foot{
+    color: #4E97B7ff;
+    font-family: 'sans-serif';
+  }
+  .stars-icon{
+    color: #E98624ff;
+  }
+
+/* 
+  --prussian-blue: #193248ff;
+  --blue-green: #4E97B7ff;
+  --jasper: #D24B38ff;
+  --wheat: #F4DDB4ff;
+  --tangerine: #E98624ff; */
+  
