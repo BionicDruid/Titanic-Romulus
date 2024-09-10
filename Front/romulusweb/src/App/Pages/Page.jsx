@@ -22,7 +22,6 @@ export default function Formulario() {
 
     return (
         <div>
-            <h1>ROMULUS WEB</h1>
             <Box className ="Formulario">
                 <Grid2 container spacing={2} columns={2}>
                     <FormControl variant="outlined">
