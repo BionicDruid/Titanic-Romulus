@@ -5,11 +5,8 @@
 .Formulario{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* gap: 10px; */
     align-items: center;
     justify-content: center;
-    /* padding: 20px; */
-    /* margin: 10px; */
     width: 100%;
 }
 
@@ -31,7 +28,7 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 880px;
+    width: 890px;
     height: 100px;
     grid-column: span 2;
     background-color: green;
@@ -45,7 +42,7 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 880px;
+    width: 890px;
     height: 100px;
     grid-column: span 2;
     background-color: red;

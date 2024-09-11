@@ -1,6 +1,9 @@
-import { useState } from "react";
-import {Box,FormControl,InputLabel, OutlinedInput,Slider,MenuItem,Select,FormControlLabel,Switch} from "@mui/material";
+import { useState, useEffect } from "react";
+import {Box,FormControl,InputLabel, OutlinedInput,Slider,MenuItem,Select,FormControlLabel,Switch, Button} from "@mui/material";
 import "../../Styles/page.css";
+import axios from "axios";
+
+const baseURL = "https://jsonplaceholder.typicode.com/posts/1";
 
 export default function Formulario() {
     const [passengerID, setPassengerID] = useState("");
@@ -19,6 +22,18 @@ export default function Formulario() {
     const [vrDeck, setVrDeck] = useState(0);
     const [name, setName] = useState("");
     const [transported, setTransported] = useState(false);
+    const [post,setPost] = useState(null);
+
+    const obtenerPrediccion = () => {
+        axios.get(baseURL)
+        .then((response) => {
+            console.log(response);
+            setPost(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
 
     const handlePassengerId = (event) => {
         setPassengerID(event.target.value);
@@ -28,9 +43,8 @@ export default function Formulario() {
         setHomePlanet(event.target.value);
     };
     
-    const handleCryoSleep = (event) => {
+    const handleCryoSleep = () => {
         setCryoSleep(!cryoSleep);
-        console.log(cryoSleep);
     };
     
     const handleCabin1 = (event) => {
@@ -53,7 +67,7 @@ export default function Formulario() {
         setAge(event.target.value);  
     };
     
-    const handleVip = (event) => {
+    const handleVip = () => {
         setVip(!vip);  
     };
     
@@ -81,9 +95,10 @@ export default function Formulario() {
         setTransported(!transported);
     };
 
-    const handleCabinFinal = (event) => {
-        setCabinFinal(cabin1+cabin2+cabin3);
-    };
+    const AsignacionCabinFinal = () => {
+        setCabinFinal(cabin1 + cabin2 + cabin3);
+        console.log(cabinFinal);
+    }
 
       // Crear array de letras de A a Z
     const letters = Array.from({ length: 7 }, (_, i) => String.fromCharCode(65 + i)); // A=65 en ASCII
@@ -105,6 +120,7 @@ export default function Formulario() {
                             label="Username"
                             onChange={handlePassengerId}
                             className="Input"
+                            value={passengerID}
                         />
                     </FormControl>
                 </div>
@@ -176,6 +192,7 @@ export default function Formulario() {
                                 <MenuItem value={"S"}>S</MenuItem>
                             </Select>
                     </FormControl>
+                    <button className="boton" onClick={AsignacionCabinFinal}>Asignar Cabina</button>
                 </div>
                 <div className="item">
                     <FormControl fullWidth>
@@ -183,9 +200,9 @@ export default function Formulario() {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={homePlanet}
+                                value={destination}
                                 label="Age"
-                                onChange={handleHomePlanet}>
+                                onChange={handleDestination}>
                                 <MenuItem value={"Destino 1"}>Destino 1</MenuItem>
                                 <MenuItem value={"Destino 2"}>Destino 2</MenuItem>
                             </Select>
@@ -196,7 +213,8 @@ export default function Formulario() {
                 <Slider
                     aria-label="Age"
                     defaultValue={0}
-                    getAriaValueText={setAge}
+                    value={age}
+                    onChange={handleAge}
                     valueLabelDisplay="auto"
                     shiftStep={30}
                     step={10}
@@ -211,9 +229,10 @@ export default function Formulario() {
                 <div className="item">
                 <h3>RoomService</h3>
                 <Slider
-                    aria-label="Age"
+                    aria-label="Room Service"
                     defaultValue={0}
-                    getAriaValueText={setAge}
+                    value={roomService}
+                    onChange={handleRoomService}
                     valueLabelDisplay="auto"
                     shiftStep={30}
                     step={10}
@@ -225,9 +244,10 @@ export default function Formulario() {
                 <div className="item">
                 <h3>Food Court</h3>
                 <Slider
-                    aria-label="Age"
+                    aria-label="Food Court"
                     defaultValue={0}
-                    getAriaValueText={setAge}
+                    value={foodCourt}
+                    onChange={handleFoodCourt}
                     valueLabelDisplay="auto"
                     shiftStep={30}
                     step={10}
@@ -239,9 +259,10 @@ export default function Formulario() {
                 <div className="item">
                 <h3>Shopping-Mall Spa</h3>
                 <Slider
-                    aria-label="Age"
+                    aria-label="Shopping-Mall Spa"
                     defaultValue={0}
-                    getAriaValueText={setAge}
+                    value={shoppingMall}
+                    onChange={handleShoppingMall}
                     valueLabelDisplay="auto"
                     shiftStep={30}
                     step={10}
@@ -253,9 +274,10 @@ export default function Formulario() {
                 <div className="item">
                 <h3>VR Deck</h3>
                 <Slider
-                    aria-label="Age"
+                    aria-label="VR Deck"
                     defaultValue={0}
-                    getAriaValueText={setAge}
+                    value={vrDeck}
+                    onChange={handleVrDeck}
                     valueLabelDisplay="auto"
                     shiftStep={30}
                     step={10}
@@ -273,6 +295,7 @@ export default function Formulario() {
                             label="Username"
                             onChange={handleName}
                             className="Input"
+                            value={name}
                         />
                 </FormControl>
                 </div>
@@ -280,9 +303,17 @@ export default function Formulario() {
                     <FormControlLabel control={<Switch />} label="Transported" color="warning" onChange={handleTransported}/>
                 </div>
                     { cryoSleep ? 
-                    <div className="resultado-positivo">EL VIAJE SERÁ EXITOSO</div> 
+                        <div className="resultado-positivo">
+                            <h2>EL VIAJE SERÁ UN EXITO</h2>
+                            <h1>{cabinFinal}</h1>
+                            <Button variant="contained" onClick={AsignacionCabinFinal}>Enviar Datos</Button>
+                        </div>
                     : 
-                    <div className="resultado-negativo">EL VIAJE SERA UN FRACASO</div> }
+                    <div className="resultado-negativo">
+                        <h2>EL VIAJE SERÁ DESASTROSO</h2>
+                        <h1>{JSON.stringify(post)}</h1>
+                        <Button variant="contained" onClick={obtenerPrediccion}>Enviar Datos</Button>
+                    </div>}
             </Box>
         </div>
     );
