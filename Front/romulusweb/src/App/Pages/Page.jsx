@@ -86,10 +86,11 @@ export default function Formulario() {
     };
 
       // Crear array de letras de A a Z
-    const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)); // A=65 en ASCII
+    const letters = Array.from({ length: 7 }, (_, i) => String.fromCharCode(65 + i)); // A=65 en ASCII
+    letters.push('T');
 
     // Crear array de números del 1 al 100
-    const numbers = Array.from({ length: 100 }, (_, i) => i + 1);
+    const numbers = Array.from({ length: 300 }, (_, i) => i + 1);
     
 
     return (
