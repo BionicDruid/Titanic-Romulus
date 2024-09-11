@@ -4,24 +4,27 @@
     font-weight: normal;
     font-style: normal;
   }
-/* 
-  --prussian-blue: #193248ff;
-  --blue-green: #4E97B7ff;
-  --jasper: #D24B38ff;
-  --wheat: #F4DDB4ff;
-  --tangerine: #E98624ff; 
-*/
+  
   .space-icon{
     color: #4E97B7ff;
   }
-
     
   .header-box {
     display: flex;
-    justify-content: space-between; /* O space-around, flex-start, según necesites */
-    align-items: center; /* Alinea los elementos verticalmente */
     padding: 10px;
     color: #F4DDB4ff;
     font-family: 'MoonDart';
     background-color:#193248ff ;
-}
+ }
+
+ /* Site colors
+  --prussian-blue: #193248ff;
+  --tangerine: #E98624ff; 
+  --tan: #F4DDB4ff;
+*/
+
+/*font colors:
+text: #565360;
+label: #90E9B;
+disabled: #E1DFE9;
+*/

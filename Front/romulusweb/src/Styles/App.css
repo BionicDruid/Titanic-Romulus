@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #F4DDB4ff;
 }
 
 .App-logo {
@@ -36,3 +37,16 @@
     transform: rotate(360deg);
   }
 }
+
+ /* Site colors
+  --prussian-blue: #193248ff;
+  --tangerine: #E98624ff; 
+  --tan: #F4DDB4ff;
+*/
+/*font colors:
+text: #565360;
+label: #90E9B;
+disabled: #E1DFE9;
+*/
+
+

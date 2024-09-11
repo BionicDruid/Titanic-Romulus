@@ -2,8 +2,7 @@
     display: flex;
     align-items: center; /* Alinea los elementos verticalmente */
     padding: 10px;
-    color: #F4DDB4ff;
-    background-color:#193248ff ;
+    background-color: #E98624ff;
   }
   .footer-column {
     color: #F4DDB4ff;
@@ -19,17 +18,21 @@
     text-decoration: none;
   }
   .footer-foot{
-    color: #4E97B7ff;
     font-family: 'sans-serif';
   }
   .stars-icon{
     color: #E98624ff;
   }
 
-/* 
+ /* Site colors
   --prussian-blue: #193248ff;
-  --blue-green: #4E97B7ff;
-  --jasper: #D24B38ff;
-  --wheat: #F4DDB4ff;
-  --tangerine: #E98624ff; */
+  --tangerine: #E98624ff; 
+  --tan: #F4DDB4ff;
+*/  
+
+/*font colors:
+text: #565360;
+label: #90E9B;
+disabled: #E1DFE9;
+*/
   
