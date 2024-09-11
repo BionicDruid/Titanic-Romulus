@@ -6,7 +6,10 @@ export default function Formulario() {
     const [passengerID, setPassengerID] = useState("");
     const [homePlanet, setHomePlanet] = useState("");
     const [cryoSleep, setCryoSleep] = useState(false);
-    const [cabin, setCabin] = useState("");
+    const [cabin1, setCabin1] = useState("");
+    const [cabin2, setCabin2] = useState("");
+    const [cabin3, setCabin3] = useState("");
+    const [cabinFinal,setCabinFinal] = useState("");
     const [destination, setDestination] = useState("");
     const [age, setAge] = useState(0);
     const [vip,setVip] = useState(false);
@@ -26,11 +29,20 @@ export default function Formulario() {
     };
     
     const handleCryoSleep = (event) => {
-        setCryoSleep(event.target.value);  // Asumimos que es un checkbox
+        setCryoSleep(!cryoSleep);
+        console.log(cryoSleep);
     };
     
-    const handleCabin = (event) => {
-        setCabin(event.target.value);
+    const handleCabin1 = (event) => {
+        setCabin1(event.target.value);
+    };
+
+    const handleCabin2 = (event) => {
+        setCabin2(event.target.value);
+    };
+
+    const handleCabin3 = (event) => {
+        setCabin3(event.target.value);
     };
     
     const handleDestination = (event) => {
@@ -38,27 +50,27 @@ export default function Formulario() {
     };
     
     const handleAge = (event) => {
-        setAge(event.target.value);  // Convertimos el valor a número
+        setAge(event.target.value);  
     };
     
     const handleVip = (event) => {
-        setVip(event.target.checked);  // Asumimos que es un checkbox
+        setVip(!vip);  
     };
     
     const handleRoomService = (event) => {
-        setRoomService(event.target.value);  // Convertimos el valor a número
+        setRoomService(event.target.value); 
     };
     
     const handleFoodCourt = (event) => {
-        setFoodCourt(event.target.value);  // Convertimos el valor a número
+        setFoodCourt(event.target.value); 
     };
     
     const handleShoppingMall = (event) => {
-        setShoppingMall(event.target.value);  // Convertimos el valor a número
+        setShoppingMall(event.target.value); 
     };
     
     const handleVrDeck = (event) => {
-        setVrDeck(event.target.value);  // Convertimos el valor a número
+        setVrDeck(event.target.value); 
     };
     
     const handleName = (event) => {
@@ -66,8 +78,18 @@ export default function Formulario() {
     };
     
     const handleTransported = (event) => {
-        setTransported(event.target.value);  // Asumimos que es un checkbox
+        setTransported(!transported);
     };
+
+    const handleCabinFinal = (event) => {
+        setCabinFinal(cabin1+cabin2+cabin3);
+    };
+
+      // Crear array de letras de A a Z
+    const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)); // A=65 en ASCII
+
+    // Crear array de números del 1 al 100
+    const numbers = Array.from({ length: 100 }, (_, i) => i + 1);
     
 
     return (
@@ -101,43 +123,54 @@ export default function Formulario() {
                     </FormControl>
                 </div>
                 <div className="item">
-                    <FormControlLabel control={<Switch defaultChecked/>} label="Cryo-Sleep" color="warning"/>
+                    <FormControlLabel control={<Switch />} label="Cryo-Sleep" color="warning" onChange={handleCryoSleep}/>
                 </div>
                 <div className="item">
-                <FormControl >
-                        <InputLabel id="demo-simple-select-label">Home Planet</InputLabel>
+                    <h2>Cabin</h2>
+                <FormControl size="small">
+                        <InputLabel id="demo-simple-select-label">Letter</InputLabel>
                             <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={homePlanet}
-                                label="Age"
-                                onChange={handleHomePlanet}>
-                                <MenuItem value={"a"}>a</MenuItem>
-                                <MenuItem value={"b"}>b</MenuItem>
-                                <MenuItem value={"c"}>c</MenuItem>
+                                labelId="letter-select-label"
+                                id="letter-select"
+                                value={cabin1}
+                                label="Letter"
+                                onChange={handleCabin1}
+                                sx={{ width: 100 }}
+                                >
+                                {letters.map((char) => (
+                                    <MenuItem key={char} value={char}>
+                                    {char}
+                                    </MenuItem>
+                                ))}
                             </Select>
                     </FormControl>
-                    <FormControl >
-                        <InputLabel id="demo-simple-select-label">Home Planet</InputLabel>
+                    <FormControl size="small">
+                        <InputLabel id="demo-simple-select-label">Number</InputLabel>
                             <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={homePlanet}
-                                label="Age"
-                                onChange={handleHomePlanet}>
-                                <MenuItem value={"0"}>0</MenuItem>
-                                <MenuItem value={"1"}>1</MenuItem>
-                                <MenuItem value={"2"}>2</MenuItem>
+                                labelId="number-select-label"
+                                id="number-select"
+                                value={cabin2}
+                                label="Number"
+                                onChange={handleCabin2}
+                                sx={{ width: 100 }}
+                                >
+                                {numbers.map((num) => (
+                                    <MenuItem key={num} value={num}>
+                                    {num}
+                                    </MenuItem>
+                                ))}
                             </Select>
                     </FormControl>
-                    <FormControl >
-                        <InputLabel id="demo-simple-select-label">Home Planet</InputLabel>
+                    <FormControl size="small">
+                        <InputLabel id="demo-simple-select-label">P o S</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={homePlanet}
+                                value={cabin3}
                                 label="Age"
-                                onChange={handleHomePlanet}>
+                                onChange={handleCabin3}
+                                sx={{ width: 100 }}
+                                >
                                 <MenuItem value={"P"}>P</MenuItem>
                                 <MenuItem value={"S"}>S</MenuItem>
                             </Select>
@@ -172,7 +205,7 @@ export default function Formulario() {
                     />
                 </div>
                 <div className="item">
-                    <FormControlLabel control={<Switch defaultChecked/>} label="VIP" color="warning"/>
+                    <FormControlLabel control={<Switch />} label="VIP" color="warning" onChange={handleVip}/>
                 </div>
                 <div className="item">
                 <h3>RoomService</h3>
@@ -232,7 +265,7 @@ export default function Formulario() {
                 </div>
                 <div className="item">
                 <FormControl variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-username">FullName</InputLabel>
+                    <InputLabel htmlFor="outlined-adornment-username">FullName</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-username"
                             type="text"
@@ -240,11 +273,15 @@ export default function Formulario() {
                             onChange={handleName}
                             className="Input"
                         />
-                    </FormControl>
+                </FormControl>
                 </div>
                 <div className="item">
-                    <FormControlLabel control={<Switch defaultChecked/>} label="Transported" color="warning"/>
+                    <FormControlLabel control={<Switch />} label="Transported" color="warning" onChange={handleTransported}/>
                 </div>
+                    { cryoSleep ? 
+                    <div className="resultado-positivo">EL VIAJE SERÁ EXITOSO</div> 
+                    : 
+                    <div className="resultado-negativo">EL VIAJE SERA UN FRACASO</div> }
             </Box>
         </div>
     );
