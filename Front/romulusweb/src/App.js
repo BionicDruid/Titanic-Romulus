@@ -7,11 +7,9 @@ import Footer from "./App/Pages/Footer";
 function App() {
   return (
     <div className="App">
-      <Container>
         <Header />
         <Formulario />
         <Footer />
-      </Container>
     </div>
   );
 }
