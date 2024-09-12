@@ -4,6 +4,7 @@ import "../../Styles/page.css";
 import axios from "axios";
 
 const baseURL = "https://jsonplaceholder.typicode.com/posts/1";
+const baseURL2 = "https://jsonplaceholder.typicode.com/posts";
 
 export default function Formulario() {
     const [passengerID, setPassengerID] = useState("");
@@ -19,32 +20,34 @@ export default function Formulario() {
     const [roomService, setRoomService] = useState(0);
     const [foodCourt, setFoodCourt] = useState(0);
     const [shoppingMall, setShoppingMall] = useState(0);
+    const [spa,setSpa] = useState(0);
     const [vrDeck, setVrDeck] = useState(0);
     const [name, setName] = useState("");
     const [transported, setTransported] = useState(false);
     const [prediccion,setPrediccion] = useState(false);
 
-    const obtenerPrediccion = () => {
-        axios.get(baseURL)
-        .then((response) => {
-            setPrediccion(response.data.title);
-            console.log(prediccion);
-        })
-        .catch((error) => {
+    const enviarParametros = async (data) => {
+        try {
+            const responsePost = await axios.post(baseURL2, data);
+            console.log("Datos enviados:", responsePost.data);
+    
+            const responsePrediccion = await obtenerPrediccion();
+            console.log("Predicción obtenida:", responsePrediccion);
+        } catch (error) {
             console.log(error);
-        });
-    }
-
-    const enviarParametros = (data) => {
-        axios.post(baseURL, data)
-        .then((response) => {
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        }
     };
-
+    
+    const obtenerPrediccion = async () => {
+        try {
+            const response = await axios.get(baseURL);
+            setPrediccion(!prediccion);
+            return response.data.title;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    
     const parametrosEnviados = {
         passengerID: passengerID,
         homePlanet: homePlanet,
@@ -108,6 +111,10 @@ export default function Formulario() {
     const handleShoppingMall = (event) => {
         setShoppingMall(event.target.value); 
     };
+
+    const handleSpa = (event) => {
+        setSpa(event.target.value);
+    };
     
     const handleVrDeck = (event) => {
         setVrDeck(event.target.value); 
@@ -131,7 +138,6 @@ export default function Formulario() {
 
     // Crear array de números del 1 al 100
     const numbers = Array.from({ length: 300 }, (_, i) => i + 1);
-    
 
     return (
         <div className="Page">
@@ -242,10 +248,10 @@ export default function Formulario() {
                     onChange={handleAge}
                     valueLabelDisplay="auto"
                     shiftStep={30}
-                    step={10}
+                    step={1}
                     marks
-                    min={10}
-                    max={110}
+                    min={0}
+                    max={80}
                     />
                 </div>
                 <div className="item">
@@ -260,10 +266,10 @@ export default function Formulario() {
                     onChange={handleRoomService}
                     valueLabelDisplay="auto"
                     shiftStep={30}
-                    step={10}
+                    step={200}
                     marks
-                    min={10}
-                    max={110}
+                    min={0}
+                    max={15000}
                     />
                 </div>
                 <div className="item">
@@ -275,10 +281,10 @@ export default function Formulario() {
                     onChange={handleFoodCourt}
                     valueLabelDisplay="auto"
                     shiftStep={30}
-                    step={10}
+                    step={500}
                     marks
-                    min={10}
-                    max={110}
+                    min={0}
+                    max={30000}
                     />
                 </div>
                 <div className="item">
@@ -290,10 +296,25 @@ export default function Formulario() {
                     onChange={handleShoppingMall}
                     valueLabelDisplay="auto"
                     shiftStep={30}
-                    step={10}
+                    step={500}
                     marks
-                    min={10}
-                    max={110}
+                    min={0}
+                    max={24000}
+                    />
+                </div>
+                <div className="item">
+                <h3>Spa</h3>
+                <Slider
+                    aria-label="Spa"
+                    defaultValue={0}
+                    value={spa}
+                    onChange={handleSpa}
+                    valueLabelDisplay="auto"
+                    shiftStep={30}
+                    step={500}
+                    marks
+                    min={0}
+                    max={23000}
                     />
                 </div>
                 <div className="item">
@@ -305,10 +326,10 @@ export default function Formulario() {
                     onChange={handleVrDeck}
                     valueLabelDisplay="auto"
                     shiftStep={30}
-                    step={10}
+                    step={500}
                     marks
-                    min={10}
-                    max={110}
+                    min={0}
+                    max={25000}
                     />
                 </div>
                 <div className="item">
@@ -328,17 +349,24 @@ export default function Formulario() {
                     <FormControlLabel control={<Switch />} label="Transported" color="warning" onChange={handleTransported}/>
                 </div>
                     { prediccion ? 
-                        <div className="resultado-positivo">
-                            <h2>EL VIAJE SERÁ UN EXITO</h2>
-                            <h3>Respuesta: {prediccion}</h3>
-                            <Button variant="contained" onClick={obtenerPrediccion}>Enviar Datos</Button>
+                        <div className="item-resultadoPositivo">
+                            <div className="texto-resultado">
+                                <h2>EL VIAJE SERÁ UN EXITO</h2>
+                            </div>
+                            <div className="boton-resultado">
+                                <Button className ="botonResultado-Positivo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
+                            </div>
                         </div>
                     : 
-                    <div className="resultado-negativo">
-                        <h2>EL VIAJE SERÁ DESASTROSO</h2>
-                        <h3>{JSON.stringify(parametrosEnviados)}</h3>
-                        <Button variant="contained" onClick={enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
-                    </div>}
+                        <div className="item-resultadoNegativo">
+                            <div className="texto-resultado">
+                                <h2>EL VIAJE SERÁ UN FRACASO</h2>
+                            </div>
+                            <div className="boton-resultado">
+                                <Button className ="botonResultado-Negativo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
+                            </div>
+                        </div>
+                    }
             </Box>
         </div>
     );

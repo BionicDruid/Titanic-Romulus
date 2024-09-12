@@ -1,5 +1,5 @@
 .Page{
-    display: flexbox;
+    display: flex;
 }
 
 .Formulario{
@@ -21,30 +21,83 @@
     height: 100px;
 }
 
-.resultado-positivo{
+.Page{
+    display: flex;
+}
+
+.Formulario{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.item{
     margin: 10px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 890px;
+    width: 410px;
     height: 100px;
-    grid-column: span 2;
+}
+
+.item-resultadoPositivo,
+.item-resultadoNegativo {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 410px; 
+    height: 100px; 
+}
+
+.item-resultadoPositivo {
     background-color: green;
     color: azure;
 }
 
-.resultado-negativo{
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 890px;
-    height: 100px;
-    grid-column: span 2;
+.item-resultadoNegativo {
     background-color: red;
     color: azure;
+}
+
+.resultado-positivo h2,
+.resultado-negativo h2{
+    margin:0;
+
+}
+
+.texto-resultado{
+    width: 75%;
+    align-self: flex-start;
+}
+
+.boton-resultado{
+    width: 25%;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.botonResultado-Positivo{
+    color: black !important;
+    background-color: greenyellow !important;
+    width: auto;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.botonResultado-Negativo{
+    color: white !important;
+    background-color: brown!important;
+    width: auto;
+    align-self: flex-end;
+    justify-self: flex-end;
 }
