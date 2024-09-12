@@ -63,6 +63,27 @@ export default function Formulario() {
         name: name,
         transported: transported,
     };
+
+    const resetParametros = () => {
+        setPassengerID("");
+        setHomePlanet("");
+        setCryoSleep(false);
+        setCabin1("");
+        setCabin2("");
+        setCabin3("");
+        setCabinFinal("");
+        setDestination("");
+        setAge(0);
+        setVip(false);
+        setRoomService(0);
+        setFoodCourt(0);
+        setShoppingMall(0);
+        setSpa(0);
+        setVrDeck(0);
+        setName("");
+        setTransported(false);
+    };
+    
     
     const handlePassengerId = (event) => {
         setPassengerID(event.target.value);
@@ -355,6 +376,8 @@ export default function Formulario() {
                             </div>
                             <div className="boton-resultado">
                                 <Button className ="botonResultado-Positivo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
+                                <Button className ="botonResultado-Positivo" variant="contained" onClick={resetParametros}>Reset Parametros</Button>
+
                             </div>
                         </div>
                     : 
@@ -364,6 +387,7 @@ export default function Formulario() {
                             </div>
                             <div className="boton-resultado">
                                 <Button className ="botonResultado-Negativo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
+                                <Button className ="botonResultado-Negativo" variant="contained" onClick={resetParametros}>Reset Parametros</Button>
                             </div>
                         </div>
                     }

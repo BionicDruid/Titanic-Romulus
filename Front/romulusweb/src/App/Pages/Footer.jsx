@@ -4,15 +4,14 @@ export default function Header() {
   return (
     <div>
       <div className="footer-box">
-        <div className="footer-column">And now that is over, I'll never be sober
-        And now that is over, I'll never be sober
-        And now that is over, I'll never be sober
-        And now that is over, I'll never be sober
+        <div className="footer-column">
+          Para cualquier duda o sugerencia, no dudes en contactar con nosotros por
+          medio del correo: prediccionescool@gmail.com o marque al numero 5511223344
         </div>
         <div className="footer-about">Our socials:</div>
         <div className="footer-foot">
-          We'll meet again, don't know where, don't know when, but I know we'll
-          meet again some sunny day.
+          Facebook: PrediccionesCool<br />
+          Instagram: @PrediccionesCool
         </div>
         <AutoAwesomeIcon className="stars-icon"></AutoAwesomeIcon>
       </div>

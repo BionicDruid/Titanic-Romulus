@@ -76,20 +76,23 @@
 }
 
 .texto-resultado{
-    width: 75%;
+    width: 60%;
     align-self: flex-start;
 }
 
 .boton-resultado{
-    width: 25%;
+    width: 40%;
     align-self: flex-end;
     justify-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .botonResultado-Positivo{
     color: black !important;
     background-color: greenyellow !important;
-    width: auto;
+    width: 150px;
     align-self: flex-end;
     justify-self: flex-end;
 }
@@ -97,7 +100,7 @@
 .botonResultado-Negativo{
     color: white !important;
     background-color: brown!important;
-    width: auto;
+    width: 150px;
     align-self: flex-end;
     justify-self: flex-end;
 }
