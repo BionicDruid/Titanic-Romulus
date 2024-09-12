@@ -45,7 +45,8 @@
 }
 
 .item-resultadoPositivo,
-.item-resultadoNegativo {
+.item-resultadoNegativo,
+.item-default {
     display: flex;
     justify-content: space-between; 
     align-items: center;
@@ -69,18 +70,26 @@
     color: azure;
 }
 
+.item-default {
+    background-color: gray;
+    color: black;
+}
+
 .resultado-positivo h2,
-.resultado-negativo h2{
+.resultado-negativo h2,
+.resultado-default h2 {
     margin:0;
 
 }
 
-.texto-resultado{
+.texto-resultado,
+.texto-default{
     width: 60%;
     align-self: flex-start;
 }
 
-.boton-resultado{
+.boton-resultado,
+.botones-default{
     width: 40%;
     align-self: flex-end;
     justify-self: flex-end;
@@ -100,6 +109,14 @@
 .botonResultado-Negativo{
     color: white !important;
     background-color: brown!important;
+    width: 150px;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.boton-default{
+    color: white !important;
+    background-color: black!important;
     width: 150px;
     align-self: flex-end;
     justify-self: flex-end;

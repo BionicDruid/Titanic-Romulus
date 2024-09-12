@@ -25,6 +25,7 @@ export default function Formulario() {
     const [name, setName] = useState("");
     const [transported, setTransported] = useState(false);
     const [prediccion,setPrediccion] = useState(false);
+    const [def, setDefault] = useState(false);
 
     const enviarParametros = async (data) => {
         try {
@@ -151,6 +152,10 @@ export default function Formulario() {
 
     const AsignacionCabinFinal = () => {
         setCabinFinal(cabin1 + cabin2 + cabin3);
+    }
+
+    const handleDefault = () => {
+        setDefault(!def);
     }
 
       // Crear array de letras de A a Z
@@ -369,28 +374,42 @@ export default function Formulario() {
                 <div className="item">
                     <FormControlLabel control={<Switch />} label="Transported" color="warning" onChange={handleTransported}/>
                 </div>
-                    { prediccion ? 
-                        <div className="item-resultadoPositivo">
-                            <div className="texto-resultado">
-                                <h2>EL VIAJE SERÁ UN EXITO</h2>
+                { def ? 
+                    <div>
+                        { prediccion ? 
+                            <div className="item-resultadoPositivo">
+                                <div className="texto-resultado">
+                                    <h2>EL VIAJE SERÁ UN EXITO</h2>
+                                </div>
+                                <div className="boton-resultado">
+                                    <Button className ="botonResultado-Positivo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
+                                    <Button className ="botonResultado-Positivo" variant="contained" onClick={() =>{resetParametros();handleDefault()}}>Reset Parametros</Button>
+                                </div>
                             </div>
-                            <div className="boton-resultado">
-                                <Button className ="botonResultado-Positivo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
-                                <Button className ="botonResultado-Positivo" variant="contained" onClick={resetParametros}>Reset Parametros</Button>
+                        : 
+                            <div className="item-resultadoNegativo">
+                                <div className="texto-resultado">
+                                    <h2>EL VIAJE SERÁ UN FRACASO</h2>
+                                </div>
+                                <div className="boton-resultado">
+                                    <Button className ="botonResultado-Negativo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
+                                    <Button className ="botonResultado-Negativo" variant="contained" onClick={() =>{resetParametros();handleDefault()}}>Reset Parametros</Button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                : 
+                    <div className="item-default">
+                        <div className="texto-default">
+                            <h2>Eliga los parametros para la predicción</h2>
+                        </div>
+                        <div className="botones-default">
+                            <Button className ="boton-default" variant="contained" onClick={() => {enviarParametros(parametrosEnviados);handleDefault()}}>Enviar Datos</Button>
+                            <Button className ="boton-default" variant="contained" onClick={resetParametros}>Reset Parametros</Button>
+                        </div>
+                    </div>
+                }
 
-                            </div>
-                        </div>
-                    : 
-                        <div className="item-resultadoNegativo">
-                            <div className="texto-resultado">
-                                <h2>EL VIAJE SERÁ UN FRACASO</h2>
-                            </div>
-                            <div className="boton-resultado">
-                                <Button className ="botonResultado-Negativo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
-                                <Button className ="botonResultado-Negativo" variant="contained" onClick={resetParametros}>Reset Parametros</Button>
-                            </div>
-                        </div>
-                    }
             </Box>
         </div>
     );
