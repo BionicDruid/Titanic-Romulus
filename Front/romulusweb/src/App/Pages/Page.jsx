@@ -22,19 +22,45 @@ export default function Formulario() {
     const [vrDeck, setVrDeck] = useState(0);
     const [name, setName] = useState("");
     const [transported, setTransported] = useState(false);
-    const [post,setPost] = useState(null);
+    const [prediccion,setPrediccion] = useState(false);
 
     const obtenerPrediccion = () => {
         axios.get(baseURL)
         .then((response) => {
-            console.log(response);
-            setPost(response.data);
+            setPrediccion(response.data.title);
+            console.log(prediccion);
         })
         .catch((error) => {
             console.log(error);
         });
     }
 
+    const enviarParametros = (data) => {
+        axios.post(baseURL, data)
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    };
+
+    const parametrosEnviados = {
+        passengerID: passengerID,
+        homePlanet: homePlanet,
+        cryoSleep: cryoSleep,
+        cabinFinal: cabinFinal,
+        destination: destination,
+        age: age,
+        vip: vip,
+        roomService: roomService,
+        foodCourt: foodCourt,
+        shoppingMall: shoppingMall,
+        vrDeck: vrDeck,
+        name: name,
+        transported: transported,
+    };
+    
     const handlePassengerId = (event) => {
         setPassengerID(event.target.value);
     };
@@ -97,7 +123,6 @@ export default function Formulario() {
 
     const AsignacionCabinFinal = () => {
         setCabinFinal(cabin1 + cabin2 + cabin3);
-        console.log(cabinFinal);
     }
 
       // Crear array de letras de A a Z
@@ -302,17 +327,17 @@ export default function Formulario() {
                 <div className="item">
                     <FormControlLabel control={<Switch />} label="Transported" color="warning" onChange={handleTransported}/>
                 </div>
-                    { cryoSleep ? 
+                    { prediccion ? 
                         <div className="resultado-positivo">
                             <h2>EL VIAJE SERÁ UN EXITO</h2>
-                            <h1>{cabinFinal}</h1>
-                            <Button variant="contained" onClick={AsignacionCabinFinal}>Enviar Datos</Button>
+                            <h3>Respuesta: {prediccion}</h3>
+                            <Button variant="contained" onClick={obtenerPrediccion}>Enviar Datos</Button>
                         </div>
                     : 
                     <div className="resultado-negativo">
                         <h2>EL VIAJE SERÁ DESASTROSO</h2>
-                        <h1>{JSON.stringify(post)}</h1>
-                        <Button variant="contained" onClick={obtenerPrediccion}>Enviar Datos</Button>
+                        <h3>{JSON.stringify(parametrosEnviados)}</h3>
+                        <Button variant="contained" onClick={enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
                     </div>}
             </Box>
         </div>
