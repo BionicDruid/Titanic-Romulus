@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import {Box,FormControl,InputLabel, OutlinedInput,Slider,MenuItem,Select,FormControlLabel,Switch, Button} from "@mui/material";
 import "../../Styles/page.css";
 import axios from "axios";
 
-const baseURL = "https://jsonplaceholder.typicode.com/posts/1";
-const baseURL2 = "https://jsonplaceholder.typicode.com/posts";
+const enviodatosURLPrueba = "http://3.87.44.205:8080/predict"
 
 export default function Formulario() {
     const [passengerID, setPassengerID] = useState("");
@@ -23,46 +22,39 @@ export default function Formulario() {
     const [spa,setSpa] = useState(0);
     const [vrDeck, setVrDeck] = useState(0);
     const [name, setName] = useState("");
-    const [transported, setTransported] = useState(false);
     const [prediccion,setPrediccion] = useState(false);
     const [def, setDefault] = useState(false);
 
     const enviarParametros = async (data) => {
         try {
-            const responsePost = await axios.post(baseURL2, data);
-            console.log("Datos enviados:", responsePost.data);
-    
-            const responsePrediccion = await obtenerPrediccion();
-            console.log("Predicción obtenida:", responsePrediccion);
+            const response = await axios.post(enviodatosURLPrueba, data);
+            console.log("Datos enviados y respuesta recibida:", response.data.prediction[1]);
+
+            if(response.data.prediction[1] === "1"){
+                setPrediccion(true);
+            }else{
+                setPrediccion(false);
+            }
         } catch (error) {
-            console.log(error);
+            console.log("Error en enviar Parametros:", error);
         }
     };
     
-    const obtenerPrediccion = async () => {
-        try {
-            const response = await axios.get(baseURL);
-            setPrediccion(!prediccion);
-            return response.data.title;
-        } catch (error) {
-            console.log(error);
-        }
-    };
     
     const parametrosEnviados = {
-        passengerID: passengerID,
-        homePlanet: homePlanet,
-        cryoSleep: cryoSleep,
-        cabinFinal: cabinFinal,
-        destination: destination,
-        age: age,
-        vip: vip,
-        roomService: roomService,
-        foodCourt: foodCourt,
-        shoppingMall: shoppingMall,
-        vrDeck: vrDeck,
-        name: name,
-        transported: transported,
+        PassengerId: passengerID,
+        HomePlanet: homePlanet,
+        CryoSleep: cryoSleep,
+        Cabin: cabinFinal,
+        Destination: destination,
+        Age: age,
+        VIP: vip,
+        RoomService: roomService,
+        FoodCourt: foodCourt,
+        ShoppingMall: shoppingMall,
+        Spa: spa,
+        VRDeck: vrDeck,
+        Name: name
     };
 
     const resetParametros = () => {
@@ -82,7 +74,6 @@ export default function Formulario() {
         setSpa(0);
         setVrDeck(0);
         setName("");
-        setTransported(false);
     };
     
     
@@ -146,12 +137,8 @@ export default function Formulario() {
         setName(event.target.value);
     };
     
-    const handleTransported = (event) => {
-        setTransported(!transported);
-    };
-
     const AsignacionCabinFinal = () => {
-        setCabinFinal(cabin1 + cabin2 + cabin3);
+        setCabinFinal(cabin1 + "/" + cabin2 + "/" +cabin3);
     }
 
     const handleDefault = () => {
@@ -191,7 +178,7 @@ export default function Formulario() {
                                 label="Age"
                                 onChange={handleHomePlanet}>
                                 <MenuItem value={"Tierra"}>Tierra</MenuItem>
-                                <MenuItem value={"Luna"}>Luna</MenuItem>
+                                <MenuItem value={"Europa"}>Europa</MenuItem>
                                 <MenuItem value={"Marte"}>Marte</MenuItem>
                             </Select>
                     </FormControl>
@@ -260,8 +247,9 @@ export default function Formulario() {
                                 value={destination}
                                 label="Age"
                                 onChange={handleDestination}>
-                                <MenuItem value={"Destino 1"}>Destino 1</MenuItem>
-                                <MenuItem value={"Destino 2"}>Destino 2</MenuItem>
+                                <MenuItem value={"TRAPPIST-1e"}>TRAPPIST-1e</MenuItem>
+                                <MenuItem value={"55 Cancri e"}>55 Cancri e</MenuItem>
+                                <MenuItem value={"PSO J318.5-22"}>PSO J318.5-22</MenuItem>
                             </Select>
                     </FormControl>
                 </div>
@@ -371,17 +359,14 @@ export default function Formulario() {
                         />
                 </FormControl>
                 </div>
-                <div className="item">
-                    <FormControlLabel control={<Switch />} label="Transported" color="warning" onChange={handleTransported}/>
-                </div>
                 { def ? 
-                    <div>
+                    <div className="item-doble">
                         { prediccion ? 
                             <div className="item-resultadoPositivo">
                                 <div className="texto-resultado">
                                     <h2>EL VIAJE SERÁ UN EXITO</h2>
                                 </div>
-                                <div className="boton-resultado">
+                                <div className="botones-resultado">
                                     <Button className ="botonResultado-Positivo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
                                     <Button className ="botonResultado-Positivo" variant="contained" onClick={() =>{resetParametros();handleDefault()}}>Reset Parametros</Button>
                                 </div>
@@ -391,7 +376,7 @@ export default function Formulario() {
                                 <div className="texto-resultado">
                                     <h2>EL VIAJE SERÁ UN FRACASO</h2>
                                 </div>
-                                <div className="boton-resultado">
+                                <div className="botones-resultado">
                                     <Button className ="botonResultado-Negativo" variant="contained" onClick={() => enviarParametros(parametrosEnviados)}>Enviar Datos</Button>
                                     <Button className ="botonResultado-Negativo" variant="contained" onClick={() =>{resetParametros();handleDefault()}}>Reset Parametros</Button>
                                 </div>
