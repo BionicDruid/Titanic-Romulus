@@ -2,8 +2,10 @@ import { useState} from "react";
 import {Box,FormControl,InputLabel, OutlinedInput,Slider,MenuItem,Select,FormControlLabel,Switch, Button} from "@mui/material";
 import "../../Styles/page.css";
 import axios from "axios";
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
-const enviodatosURLPrueba = "http://3.87.44.205:8080/predict"
+const enviodatosURLPrueba = "http://184.72.104.18:8080/predict"
+// Local casa const enviodatosURLPrueba = "http://192.168.68.115:8080/predict"
 
 export default function Formulario() {
     const [passengerID, setPassengerID] = useState("");
@@ -236,7 +238,7 @@ export default function Formulario() {
                                 <MenuItem value={"S"}>S</MenuItem>
                             </Select>
                     </FormControl>
-                    <button className="boton" onClick={AsignacionCabinFinal}>Asignar Cabina</button>
+                    <SaveAltIcon className="save-button" onClick={AsignacionCabinFinal} />
                 </div>
                 <div className="item">
                     <FormControl fullWidth>

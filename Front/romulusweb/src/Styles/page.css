@@ -23,6 +23,11 @@
     background-color: white;
 }
 
+.save-button{
+    padding-left: 6px;
+    font-size: 40px;
+}
+
 .item-resultadoPositivo,
 .item-resultadoNegativo,
 .item-default{
@@ -31,7 +36,7 @@
     align-items: center; 
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 890px; 
     height: 100px;
