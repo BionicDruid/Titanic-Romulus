@@ -255,6 +255,7 @@ export default function Formulario() {
                             </Select>
                     </FormControl>
                 </div>
+                
                 <div className="item">
                 <h3>Age</h3>
                 <Slider
