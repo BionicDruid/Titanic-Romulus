@@ -1,6 +1,6 @@
 .Page{
     display: flex;
-    background-color: grey;
+    background-color: #F4DDB4ff;
 }
 
 .Formulario{
@@ -14,18 +14,30 @@
 .item{
     margin: 10px;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff9e;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 410px;
-    height: 100px;
-    background-color: white;
+    width: 400px;
+    height: 90px;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
 }
 
 .save-button{
     padding-left: 6px;
-    font-size: 40px;
+    font-size: 40px;   
+}
+.save-button:hover{
+    cursor: pointer;
+    color:grey;
+}
+
+.save-button:onclick{
+    cursor: pointer;
+    color:green;
 }
 
 .item-resultadoPositivo,

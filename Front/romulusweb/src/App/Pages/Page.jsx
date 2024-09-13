@@ -335,7 +335,7 @@ export default function Formulario() {
                 </div>
                 <div className="item">
                 <h3>VR Deck</h3>
-                <Slider
+                <Slider 
                     aria-label="VR Deck"
                     defaultValue={0}
                     value={vrDeck}
