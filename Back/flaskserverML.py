@@ -10,7 +10,7 @@ with open('finalized_model.sav', 'rb') as model_file:
     loaded_model = pickle.load(model_file)
 
 @app.route('/getPredict', methods=['GET'])
-def predict():
+def getPredict():
     # Obtener parámetros desde la URL
     passengerID = request.args.get('passengerID')
     homePlanet = request.args.get('homePlanet')
@@ -40,7 +40,7 @@ def predict():
     return jsonify({'prediction': prediction_bool})
 
 @app.route('/predict', methods=['POST'])
-def predict():
+def postPredict():
     
     # JSON Request
     data = request.json
