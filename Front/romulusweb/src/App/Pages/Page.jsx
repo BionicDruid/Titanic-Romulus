@@ -4,7 +4,8 @@ import "../../Styles/page.css";
 import axios from "axios";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
-const enviodatosURLPrueba = "http://184.72.104.18:8080/predict"
+//const enviodatosURLPrueba = "http://184.72.104.18:8080/predict"
+const enviodatosURLPrueba = "http://3.93.149.78:8080/predict"
 // Local casa const enviodatosURLPrueba = "http://192.168.68.115:8080/predict"
 
 export default function Formulario() {
@@ -388,7 +389,7 @@ export default function Formulario() {
                 : 
                     <div className="item-default">
                         <div className="texto-default">
-                            <h2>Eliga los parametros para la predicción</h2>
+                            <h2>Elija los parametros para la predicción</h2>
                         </div>
                         <div className="botones-default">
                             <Button className ="boton-default" variant="contained" onClick={() => {enviarParametros(parametrosEnviados);handleDefault()}}>Enviar Datos</Button>

@@ -21,7 +21,7 @@
     justify-content: space-between; /* O space-around, flex-start, según necesites */
     align-items: center; /* Alinea los elementos verticalmente */
     padding: 10px;
-    color: #F4DDB4ff;
+    color:rgb(228, 223, 213);
     font-family: 'MoonDart';
     background-color:#193248ff ;
 }

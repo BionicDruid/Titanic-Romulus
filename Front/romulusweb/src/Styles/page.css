@@ -1,6 +1,6 @@
 .Page{
     display: flex;
-    background-color: grey;
+    background-color: rgb(226, 223, 223);
 }
 
 .Formulario{
@@ -10,22 +10,33 @@
     justify-content: center;
     width: 100%;
 }
-
 .item{
     margin: 10px;
     padding: 20px;
     border: 1px solid #ccc;
+    border: 3px solid #ffffff48;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 410px;
     height: 100px;
     background-color: white;
+    width: 400px;
+    height: 90px;
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(100%);
 }
 
 .save-button{
     padding-left: 6px;
     font-size: 40px;
+    color: #193248ff;
+}
+
+.save-button:hover{
+    color: rgb(138, 140, 142);
+    
 }
 
 .item-resultadoPositivo,
@@ -51,12 +62,12 @@
 }
 
 .item-resultadoPositivo {
-    background-color: green;
+    background-color: #193248ff;
     color: azure;
 }
 
 .item-resultadoNegativo {
-    background-color: red;
+    background-color: #E98624ff;
     color: azure;
 }
 
@@ -85,7 +96,7 @@
     justify-self: flex-end;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
 }
 
 .botonResultado-Positivo{
