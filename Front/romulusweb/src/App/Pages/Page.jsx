@@ -4,9 +4,8 @@ import "../../Styles/page.css";
 import axios from "axios";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
-//const enviodatosURLPrueba = "http://184.72.104.18:8080/predict"
-const enviodatosURLPrueba = "http://3.93.149.78:8080/predict"
-// Local casa const enviodatosURLPrueba = "http://192.168.68.115:8080/predict"
+//me di cuenta que me doxxee :)
+const enviodatosURLPrueba = "http://:8080/predict"
 
 export default function Formulario() {
     const [passengerID, setPassengerID] = useState("");
